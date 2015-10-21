@@ -1,0 +1,39 @@
+### Main puppet config file ##
+### For MODESIM. Works for Puppet Master and Agents ###
+#######################################################
+# $Rev:: 5                                $:
+# $Date:: 2015-10-19 11:28:38 +0200 (Mon,#$:
+# $Author:: bowenha2                      $:
+#######################################################
+[main]
+    # The Puppet log directory.
+    # The default value is '$vardir/log'.
+    logdir = /var/log/puppet
+
+    # Where Puppet PID files are kept.
+    # The default value is '$vardir/run'.
+    rundir = /var/run/puppet
+
+    # Where SSL certificates are kept.
+    # The default value is '$confdir/ssl'.
+    ssldir = $vardir/ssl
+
+[agent]
+    # The file in which puppetd stores a list of the classes
+    # associated with the retrieved configuratiion.  Can be loaded in
+    # the separate ``puppet`` executable using the ``--loadclasses``
+    # option.
+    # The default value is '$confdir/classes.txt'.
+    classfile = $vardir/classes.txt
+
+    # Where puppetd caches the local configuration.  An
+    # extension indicating the cache format is added automatically.
+    # The default value is '$confdir/localconfig'.
+    localconfig = $vardir/localconfig
+    server = $hostname
+    certname = $hostname
+
+[master]
+    #dns_alt_names = manager,puppetmaster,XXREALHOSTNAMEXX,XXREALHOSTNAMEXX.$domain
+    bindaddress = $ipaddress_eth1
+    dns_alt_names = pupmaster, master, puppetmaster
